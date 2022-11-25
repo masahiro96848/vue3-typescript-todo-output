@@ -1,31 +1,55 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-    <div>
-        <a href="https://vitejs.dev" target="_blank">
-            <img src="/vite.svg" class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://vuejs.org/" target="_blank">
-            <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-        </a>
+    <div class="container">
+        <h1 class="title">Todo List</h1>
+        <section class="container-area">
+            <div>
+                <input
+                    class="input-area"
+                    placeholder="Todoを追加"
+                    type="text"
+                />
+            </div>
+        </section>
+        <section class="container-area">
+            <div>
+                <input
+                    class="input-area"
+                    placeholder="キーワードを検索"
+                    type="text"
+                />
+            </div>
+        </section>
+        <section class="container-area">
+            <div>
+                <ul class="list-row">
+                    <li class="list">
+                        <span class="item">テスト1</span>
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="list-row">
+                    <li class="list">
+                        <span class="item">テスト2</span>
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </div>
-    <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-}
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+
+export default defineComponent({
+    setup() {
+        const todo = ref('')
+
+        return {
+            todo,
+        }
+    },
+})
+</script>
