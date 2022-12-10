@@ -3,13 +3,14 @@
         <h1 class="title">Todo List</h1>
         <section class="container-area">
             <div>
-                <input
-                    v-model="state.todo"
-                    class="input-area"
-                    placeholder="Todoを追加"
-                    type="text"
-                />
-                <button @click="addTodo">追加</button>
+                <form action="" @submit.prevent="handleAddTodo">
+                    <input
+                        v-model="state.todo"
+                        class="input-area"
+                        placeholder="Todoを追加"
+                        type="text"
+                    />
+                </form>
             </div>
         </section>
         <!-- todoListのエリア -->
@@ -31,23 +32,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive } from 'vue'
+import { defineComponent, reactive } from 'vue'
 
 export default defineComponent({
     setup() {
-        const state = reactive({
+        type Todo = {
+            todo: string
+            todos: Array<string>
+        }
+
+        const state = reactive<Todo>({
             todo: '',
             todos: [],
         })
 
-        const addTodo = () => {
+        const handleAddTodo = () => {
+            if (state.todo === '') {
+                return
+            }
             state.todos.push(state.todo)
             state.todo = ''
         }
 
         return {
             state,
-            addTodo,
+            handleAddTodo,
         }
     },
 })
